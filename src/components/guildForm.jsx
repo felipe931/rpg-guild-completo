@@ -22,28 +22,38 @@ export function GuildForm(props) {
   }, [guildId]);
 
   const addGuild = async (guild) => {
-    const { name } = guild;
+    const name = guild?.name?.trim();
+    if (!name) {
+      console.warn("Nome de guilda obrigatório");
+      return;
+    }
 
     const created = { name };
 
     try {
       const response = await requester.post("/guilds", created);
       props.updateGuilds?.(response.data);
+      setGuild(response.data);
     } catch (error) {
       console.error("Erro ao adicionar a guilda:", error);
     }
   };
 
   const editGuild = async (guild) => {
-    const { id, name } = guild;
+    const { id } = guild;
+    const name = guild?.name?.trim();
 
-    const updated = {
-      name,
-    };
+    if (!name) {
+      console.warn("Nome de guilda obrigatório");
+      return;
+    }
+
+    const updated = { name };
 
     try {
       const response = await requester.patch(`/guilds/${id}`, updated);
       setGuild(response.data);
+      props.updateGuilds?.(response.data);
     } catch (error) {
       console.error("Erro ao editar a guilda:", error);
     }

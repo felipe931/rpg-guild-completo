@@ -8,6 +8,7 @@ export function Members() {
   const navigate = useNavigate();
 
   const [members, setMembers] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const getMembers = async () => {
@@ -31,21 +32,66 @@ export function Members() {
     }
   };
 
-  const updateMembers = (data) => setMembers([...members, data]);
+  const updateMembers = (data) => {
+    const exists = members.some((mb) => mb.id === data.id);
+    setMembers((prev) =>
+      exists ? prev.map((mb) => (mb.id === data.id ? data : mb)) : [...prev, data]
+    );
+  };
+
+  const filteredMembers = members.filter((member) =>
+    (member.name ?? "").toLowerCase().includes(search.toLowerCase()) ||
+    (member.classe ?? "").toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div className="flex flex-col gap-4 p-5 text-orange-500">
-      <h1>Membros</h1>
-      <ul>
-        {members.map((member) => (
-          <li key={member.id} className="cursor-pointer flex gap-4 items-center">
-            {member.name}
-            <button onClick={() => navigate(member.id)}>Editar</button>
-            <button onClick={() => deleteMember(member)}>Excluir</button>
-          </li>
-        ))}
-      </ul>
-      <MemberForm updateMembers={updateMembers} />
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+        <h1 className="text-2xl">Membros</h1>
+        <input
+          type="text"
+          placeholder="Buscar por nome ou classe"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="border rounded-md p-2 text-black"
+        />
+      </div>
+
+      {filteredMembers.length === 0 ? (
+        <p className="text-sm text-gray-500">Nenhum membro encontrado.</p>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {filteredMembers.map((member) => (
+            <article key={member.id} className="border rounded-lg p-3 bg-white text-black shadow-sm">
+              <h2 className="font-bold text-xl text-orange-500">{member.name}</h2>
+              <p className="text-sm">Classe: {member.classe ?? "N/A"}</p>
+              <p className="text-sm">Nível: {member.nivel ?? "N/A"} - XP: {member.xp ?? 0}</p>
+              <p className="text-sm">Guilda: {member.guildId ?? "Sem guilda"}</p>
+              <div className="flex flex-wrap gap-2 mt-2">
+                <button
+                  type="button"
+                  className="text-xs px-2 py-1 bg-orange-100 rounded"
+                  onClick={() => navigate(String(member.id))}
+                >
+                  Editar
+                </button>
+                <button
+                  type="button"
+                  className="text-xs px-2 py-1 bg-red-100 rounded"
+                  onClick={() => deleteMember(member)}
+                >
+                  Excluir
+                </button>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+
+      <section className="mt-4">
+        <h2 className="text-xl">Nova ficha</h2>
+        <MemberForm updateMembers={updateMembers} />
+      </section>
     </div>
   );
 }
