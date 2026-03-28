@@ -14,6 +14,9 @@ export function Navbar() {
         <li className="text-sm lg:text-md">
           <Link to="/members" className="text-slate-100 hover:text-orange-300">Membros</Link>
         </li>
+        <li className="text-sm lg:text-md">
+          <Link to="/Dados" className="text-slate-100 hover:text-orange-300">Dados</Link>
+        </li>
       </ul>
     </nav>
   );

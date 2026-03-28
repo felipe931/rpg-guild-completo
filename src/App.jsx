@@ -6,6 +6,7 @@ import { Guilds } from './components/guilds';
 import { Members } from './components/members';
 import { MemberForm } from './components/memberForm';
 import { GuildForm } from './components/guildForm';
+import Dados from './components/Dados';
 
 const App = () => (
   <Router>
@@ -17,6 +18,7 @@ const App = () => (
         <Route path='/members' element={<Members />} />
         <Route path='/guilds/:guildId' element={<GuildForm />} />
         <Route path='/members/:memberId' element={<MemberForm />} />
+        <Route path='/Dados' element={<Dados />} />
       </Routes>
     </div>
   </Router>
