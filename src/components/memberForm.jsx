@@ -118,12 +118,13 @@ export function MemberForm(props) {
   };
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-col gap-4 text-orange-500 bg-white p-4 rounded-md shadow-sm">
-      <h2 className="text-lg font-semibold text-orange-500">Ficha do Membro</h2>
+    <form onSubmit={onSubmit} className="flex flex-col gap-4 text-orange-300 bg-[#1e293b] p-4 rounded-md shadow-sm border border-slate-700">
+      <h2 className="text-lg font-semibold text-orange-400">Ficha do Membro</h2>
 
       <div className="flex flex-col gap-1">
-        <label>Nome</label>
+        <label className="text-slate-100">Nome</label>
         <input
+          className="bg-slate-800 border border-slate-600 text-slate-100 rounded p-2"
           role="input"
           name="name"
           type="text"
@@ -134,13 +135,15 @@ export function MemberForm(props) {
       </div>
 
       <div className="flex flex-col gap-1">
-        <label>Guilda</label>
+        <label className="text-slate-100">Guilda</label>
         <select
           role="select"
           value={member.guildId ?? ""}
           onChange={(e) => setMember((prev) => ({ ...prev, guildId: e.target.value }))}
+          className="bg-slate-800 border border-slate-600 text-slate-100 rounded p-2"
+          disabled={guilds.length === 0}
         >
-          <option value="">-- Escolha uma guilda --</option>
+          <option value="">{guilds.length === 0 ? "Carregando guildas..." : "-- Escolha uma guilda --"}</option>
           {guilds.map((guild) => (
             <option key={guild.id} value={guild.id}>
               {guild.name}
@@ -182,7 +185,7 @@ export function MemberForm(props) {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-3 text-sm text-black">
+      <div className="grid grid-cols-3 gap-3 text-sm text-slate-200">
         {[
           { key: "forca", label: "Força" },
           { key: "destreza", label: "Destreza" },
@@ -202,8 +205,8 @@ export function MemberForm(props) {
         ))}
       </div>
 
-      <div className="border rounded-md p-3 bg-[#f7f5ef] text-black">
-        <h3 className="font-semibold text-orange-500">Atributos</h3>
+      <div className="border rounded-md p-3 bg-[#0f172a] text-slate-200">
+        <h3 className="font-semibold text-orange-400">Atributos</h3>
         {["vida", "esforco", "sanidade"].map((key) => (
           <div key={key} className="mb-3">
             <div className="flex justify-between items-center mb-1">

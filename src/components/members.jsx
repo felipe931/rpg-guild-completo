@@ -45,25 +45,25 @@ export function Members() {
   );
 
   return (
-    <div className="flex flex-col gap-4 p-5 text-orange-500">
+    <div className="flex flex-col gap-4 p-5 text-orange-300 bg-[#111827] rounded-lg shadow-inner">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-        <h1 className="text-2xl">Membros</h1>
+        <h1 className="text-2xl text-slate-100">Membros</h1>
         <input
           type="text"
           placeholder="Buscar por nome ou classe"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="border rounded-md p-2 text-black"
+          className="border rounded-md p-2 text-slate-100 bg-[#0f172a]"
         />
       </div>
 
       {filteredMembers.length === 0 ? (
-        <p className="text-sm text-gray-500">Nenhum membro encontrado.</p>
+        <p className="text-sm text-slate-300">Nenhum membro encontrado.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {filteredMembers.map((member) => (
-            <article key={member.id} className="border rounded-lg p-3 bg-white text-black shadow-sm">
-              <h2 className="font-bold text-xl text-orange-500">{member.name}</h2>
+            <article key={member.id} className="border rounded-lg p-3 bg-slate-900 text-slate-100 shadow-sm">
+              <h2 className="font-bold text-xl text-orange-400">{member.name}</h2>
               <p className="text-sm">Classe: {member.classe ?? "N/A"}</p>
               <p className="text-sm">Nível: {member.nivel ?? "N/A"} - XP: {member.xp ?? 0}</p>
               <p className="text-sm">Guilda: {member.guildId ?? "Sem guilda"}</p>
