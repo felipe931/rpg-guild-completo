@@ -8,6 +8,8 @@ import { MemberForm } from './components/memberForm';
 import { GuildForm } from './components/guildForm';
 import React from 'react';
 import customizar from './customizar';
+import Dados from './components/Dados';
+
 
 const App = () => (
   <Router>
@@ -19,6 +21,7 @@ const App = () => (
         <Route path='/members' element={<Members />} />
         <Route path='/guilds/:guildId' element={<GuildForm />} />
         <Route path='/members/:memberId' element={<MemberForm />} />
+        <Route path='/Dados' element={<Dados />} />
       </Routes>
 
       <h1>Bem-vindo à Guilda</h1>
