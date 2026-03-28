@@ -3,13 +3,26 @@
     {
       "id": "2511",
       "name": "Sentinelas"
+    },
+    {
+      "id": "3e96",
+      "name": "Atumalekos"
     }
   ],
   "members": [
     {
-      "id": "0ad5",
+      "id": "89bd",
       "name": "Selene Nightingale",
-      "guildId": "2511"
+      "guildId": "3e96",
+      "classe": "Guerreiro",
+      "nivel": 1,
+      "xp": 0,
+      "vida": 100,
+      "esforco": 100,
+      "sanidade": 100,
+      "forca": 10,
+      "destreza": 10,
+      "inteligencia": 10
     }
   ]
 }
