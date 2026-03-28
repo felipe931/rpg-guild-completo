@@ -6,7 +6,10 @@ import { Guilds } from './components/guilds';
 import { Members } from './components/members';
 import { MemberForm } from './components/memberForm';
 import { GuildForm } from './components/guildForm';
+import React from 'react';
+import customizar from './customizar';
 import Dados from './components/Dados';
+
 
 const App = () => (
   <Router>
@@ -20,8 +23,21 @@ const App = () => (
         <Route path='/members/:memberId' element={<MemberForm />} />
         <Route path='/Dados' element={<Dados />} />
       </Routes>
+
+      <h1>Bem-vindo à Guilda</h1>
+      <button onClick={customizar}>Customizar Personagem</button>
     </div>
   </Router>
 );
+
+
+/*function App() {
+    return (
+        <div>
+            <h1>Bem-vindo à Guilda</h1>
+            <button onClick={customizar}>Customizar Personagem</button>
+        </div>
+    );
+}*/
 
 export default App;
