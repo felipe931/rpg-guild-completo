@@ -6,6 +6,20 @@ import { Guilds } from "./components/guilds";
 import { Members } from "./components/members";
 import { MemberForm } from "./components/memberForm";
 import { GuildForm } from "./components/guildForm";
+import  Dados  from "./components/Dados"; 
+
+function App() {
+  return (
+    <div>
+      <h1> RPG</h1>
+      <Dados lados={6} />
+    </div>
+  );
+}
+
+
+
+
 
 const App = () => (
   <Router>
