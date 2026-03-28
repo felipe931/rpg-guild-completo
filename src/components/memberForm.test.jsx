@@ -1,3 +1,4 @@
+import React from "react";
 import Router from "react-router-dom";
 
 import { render, waitFor, screen, fireEvent } from "../testUtils";
@@ -50,13 +51,22 @@ describe("MemberForm tests", () => {
 
     expect(select).toHaveValue("325c");
 
-    fireEvent.click(screen.getByRole("button"));
+    fireEvent.click(screen.getByRole("button", { name: /Criar Ficha/i }));
 
     
     await waitFor(() =>
       expect(requester.post).toHaveBeenCalledWith("/members", {
         name: "Selene Nightingale",
         guildId: "325c",
+        classe: "Guerreiro",
+        nivel: 1,
+        xp: 0,
+        vida: 100,
+        esforco: 100,
+        sanidade: 100,
+        forca: 10,
+        destreza: 10,
+        inteligencia: 10,
       })
     );
 
